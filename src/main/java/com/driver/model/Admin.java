@@ -1,12 +1,16 @@
 package com.driver.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "Admin")
 public class Admin{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    int adminId;
+
+    String username;
+    String password;
     public Admin(){ }
 
     public Admin(int adminId, String username, String password) {
@@ -39,10 +43,4 @@ public class Admin{
         this.password = password;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int adminId;
-
-    String username;
-    String password;
 }

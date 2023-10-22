@@ -1,24 +1,33 @@
 package com.driver.model;
 
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
-
 import javax.persistence.*;
 
+@Entity
+@Table(name = "TripBooking")
 public class TripBooking{
-    public TripBooking(){
 
-    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int tripBookingId;
+    String fromLocation;
+    String toLocation;
+    int distanceInKm;
+    TripStatus status;
+    int bill;
 
-    public TripBooking(int tripBookingId, String fromLocation, String toLocation, int distanceInKm, TripStatus status, int bill) {
+    public TripBooking(){
+
+    }
+
+    public TripBooking(int tripBookingId, String fromLocation, String toLocation, int distanceInKm, TripStatus status, int bill, Customer customer, Driver driver) {
         this.tripBookingId = tripBookingId;
         this.fromLocation = fromLocation;
         this.toLocation = toLocation;
         this.distanceInKm = distanceInKm;
         this.status = status;
         this.bill = bill;
+        this.customer = customer;
+        this.driver = driver;
     }
 
     public int getTripBookingId() {
@@ -84,12 +93,6 @@ public class TripBooking{
     public void setDriver(Driver driver) {
         this.driver = driver;
     }
-
-    String fromLocation;
-    String toLocation;
-    int distanceInKm;
-    TripStatus status;
-    int bill;
 
     @ManyToOne
     @JoinColumn

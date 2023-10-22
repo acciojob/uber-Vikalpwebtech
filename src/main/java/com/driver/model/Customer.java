@@ -4,11 +4,20 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "Customer")
 public class Customer{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    int customerId;
+
+    String mobile;
+
+    String password;
     public Customer(){
 
     }
-
     public Customer(int customerId, String mobile, String password) {
         this.customerId = customerId;
         this.mobile = mobile;
@@ -47,13 +56,6 @@ public class Customer{
         this.tripBookingList = tripBookingList;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int customerId;
-
-    String mobile;
-
-    String password;
 
     @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
     List<TripBooking> tripBookingList = new ArrayList<>();

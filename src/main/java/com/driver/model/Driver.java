@@ -4,15 +4,24 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "Driver")
 public class Driver{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    int driverId;
+    String mobile;
+    String password;
     public Driver(){
 
     }
 
-    public Driver(int driverId, String mobile, String password) {
+    public Driver(int driverId, String mobile, String password, Cab cab, List<TripBooking> tripBookingList) {
         this.driverId = driverId;
         this.mobile = mobile;
         this.password = password;
+        this.cab = cab;
+        this.tripBookingList = tripBookingList;
     }
 
     public int getDriverId() {
@@ -55,11 +64,6 @@ public class Driver{
         this.tripBookingList = tripBookingList;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int driverId;
-    String mobile;
-    String password;
 
     //Parent
     @OneToOne(mappedBy = "driver",cascade = CascadeType.ALL)

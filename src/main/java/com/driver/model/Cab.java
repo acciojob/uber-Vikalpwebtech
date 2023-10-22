@@ -2,11 +2,17 @@ package com.driver.model;
 
 import javax.persistence.*;
 
+@Entity
+@Table(name = "Cab")
 public class Cab{
-    public Cab(){
 
-    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    int Id;
 
+    int perKmRate;
+    boolean available;
+    public Cab(){}
     public Cab(int id, int perKmRate, boolean available) {
         Id = id;
         this.perKmRate = perKmRate;
@@ -44,13 +50,6 @@ public class Cab{
     public void setDriver(Driver driver) {
         this.driver = driver;
     }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int Id;
-
-    int perKmRate;
-    boolean available;
 
     //Relationship --child
     @OneToOne
